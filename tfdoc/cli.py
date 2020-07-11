@@ -19,6 +19,7 @@ from .templates import DEFAULT_TPL
 @click.argument("tf_dir", default=os.getcwd())
 def cli(tf_dir, title, out_file):
     """ Generate a templated Terraform README """
+
     print(f"Reading Terraform configuration from: {tf_dir}")
 
     with open(out_file, 'w') as f:

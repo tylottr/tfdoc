@@ -92,6 +92,7 @@ def parse_tf_output(tf_output):
     >>> parse_tf_output(op2)
     {'myOut2': {'description': 'this outputs something'}}
     """
+
     output_name = list(tf_output.keys()).pop()
     output_description = tf_output[output_name].get('description', ['']).pop()
 
@@ -104,6 +105,7 @@ def parse_tf_config(tf_dir):
     """
     Parses Terraform configuration files into a more usable format
     """
+
     out_data = {"variable": {}, "output": {}}
     tf_files = [
         x for x in os.listdir(tf_dir) if os.path.splitext(x)[1] == ".tf"
