@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+twine = "*"
+pylint = "*"
+
+[requires]
+python_version = "3.7"
+
+[packages]
+python-hcl2 = "*"
+jinja2 = "*"
+click = "*"
+
+[packages.e1839a8]
+path = "."
+editable = true
