@@ -118,8 +118,8 @@ def parse_tf_config(tf_dir):
 
     for tf_file in tf_files:
         try:
-            f = open(f"{tf_dir}{os.sep}{tf_file}")
-            tf_data = hcl2.load(f)
+            with open(f"{tf_dir}{os.sep}{tf_file}") as f:
+                tf_data = hcl2.load(f)
 
             if tf_data.get('variable'):
                 for tf_variable in tf_data['variable']:
@@ -131,7 +131,6 @@ def parse_tf_config(tf_dir):
                     tf_output_parsed = parse_tf_output(tf_output)
                     out_data['output'].update(tf_output_parsed)
 
-            f.close()
         except ValueError as err:
             logging.error("Error in parsing file: '%s': %r", tf_file, err)
 
