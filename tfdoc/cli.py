@@ -22,7 +22,7 @@ def cli(tf_dir, title, out_file):
 
     print(f"Reading Terraform configuration from: {tf_dir}")
 
-    with open(out_file, 'w') as f:
+    with open(out_file, "w") as f:
         data = generate_template(tf_dir, DEFAULT_TPL, title)
         f.write(data)
 

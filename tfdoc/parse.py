@@ -7,7 +7,7 @@ import re
 import hcl2
 import jinja2
 
-logging.basicConfig(level=os.environ.get('LOGLEVEL', 'INFO').upper(),
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO").upper(),
                     format="[%(asctime)s] %(message)s")
 
 
@@ -94,9 +94,9 @@ def parse_tf_output(tf_output):
     """
 
     output_name = list(tf_output.keys()).pop()
-    output_description = tf_output[output_name].get('description', ['']).pop()
+    output_description = tf_output[output_name].get("description", [""]).pop()
 
-    output_parsed = {output_name: {'description': output_description}}
+    output_parsed = {output_name: {"description": output_description}}
 
     return output_parsed
 
@@ -121,15 +121,15 @@ def parse_tf_config(tf_dir):
             with open(f"{tf_dir}{os.sep}{tf_file}") as f:
                 tf_data = hcl2.load(f)
 
-            if tf_data.get('variable'):
-                for tf_variable in tf_data['variable']:
+            if tf_data.get("variable"):
+                for tf_variable in tf_data["variable"]:
                     tf_variable_parsed = parse_tf_variable(tf_variable)
-                    out_data['variable'].update(tf_variable_parsed)
+                    out_data["variable"].update(tf_variable_parsed)
 
-            if tf_data.get('output'):
-                for tf_output in tf_data['output']:
+            if tf_data.get("output"):
+                for tf_output in tf_data["output"]:
                     tf_output_parsed = parse_tf_output(tf_output)
-                    out_data['output'].update(tf_output_parsed)
+                    out_data["output"].update(tf_output_parsed)
 
         except ValueError as err:
             logging.error("Error in parsing file: '%s': %r", tf_file, err)
@@ -144,6 +144,6 @@ def generate_template(tf_dir, template_data, title):
     tf_data = parse_tf_config(tf_dir)
     tpl = jinja2.Template(template_data)
     tpl_rendered = tpl.render(title=title,
-                              variable=tf_data.get('variable'),
-                              output=tf_data.get('output'))
+                              variable=tf_data.get("variable"),
+                              output=tf_data.get("output"))
     return tpl_rendered
