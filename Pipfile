@@ -6,6 +6,7 @@ name = "pypi"
 [dev-packages]
 twine = "*"
 pylint = "*"
+yapf = "*"
 
 [requires]
 python_version = "3.7"

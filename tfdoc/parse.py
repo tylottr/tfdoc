@@ -70,6 +70,7 @@ In the event the deployment needs to be destroyed, you can run `terraform destro
 
 """
 
+
 def parse_tf_variable(tf_variable):
     """
     Parses Terraform and transforms a single terraform variable
@@ -105,7 +106,8 @@ def parse_tf_variable(tf_variable):
     variable_name = list(tf_variable.keys()).pop()
     out_variable.setdefault(variable_name, {})
 
-    variable_description = tf_variable[variable_name].get("description", [""]).pop()
+    variable_description = tf_variable[variable_name].get("description",
+                                                          [""]).pop()
     out_variable[variable_name].setdefault("description", variable_description)
 
     variable_type = tf_variable[variable_name].get("type", [""]).pop()
@@ -153,23 +155,19 @@ def parse_tf_output(tf_output):
     output_name = list(tf_output.keys()).pop()
     output_description = tf_output[output_name].get('description', ['']).pop()
 
-    output_parsed = {
-        output_name: {
-            'description': output_description
-        }
-    }
+    output_parsed = {output_name: {'description': output_description}}
 
     return output_parsed
+
 
 def parse_tf_config(tf_dir):
     """
     Parses Terraform configuration files into a more usable format
     """
-    out_data = {
-        "variable": {},
-        "output": {}
-    }
-    tf_files = [x for x in os.listdir(tf_dir) if os.path.splitext(x)[1] == ".tf"]
+    out_data = {"variable": {}, "output": {}}
+    tf_files = [
+        x for x in os.listdir(tf_dir) if os.path.splitext(x)[1] == ".tf"
+    ]
     logging.debug("Found files: %r", tf_files)
 
     if len(tf_files) < 1:
@@ -197,6 +195,7 @@ def parse_tf_config(tf_dir):
 
     logging.debug("Returning object: %r", out_data)
     return out_data
+
 
 def generate_template(tf_dir, title):
     """ Generate a template string """
