@@ -35,7 +35,7 @@ In terms of software you require the below:
 
 {%- endif %}
 
-# Deployment
+## Deployment
 
 1. Set variables for the deployment
     - Terraform has a number of ways to set variables. See [here](https://www.terraform.io/docs/configuration/variables.html#assigning-values-to-root-module-variables) for more information.
@@ -50,11 +50,11 @@ In terms of software you require the below:
 
 In the event the deployment needs to be destroyed, you can run `terraform destroy` in place of steps 5 and 6.
 
-# Known Issues
+## Known Issues
 
 > Remove or fill this section in.
 
-# Post-Deployment
+## Post-Deployment
 
 > Remove or update with post-deployment steps that may need performing.
 
