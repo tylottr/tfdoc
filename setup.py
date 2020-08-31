@@ -18,7 +18,7 @@ URL = "https://github.com/tylottr/tfdoc"
 EMAIL = "tyla.boff@gmail.com"
 AUTHOR = "Tyla Boff"
 REQUIRES_PYTHON = ">=3.7.0"
-VERSION = "0.1.1"
+VERSION = "0.1.2"
 
 # What packages are required for this module to be executed?
 REQUIRED = ["click", "jinja2", "python-hcl2"]
